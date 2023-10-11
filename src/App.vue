@@ -243,9 +243,10 @@ export default {
     async function buscar() {
       try {
         let criterio = await axios.get(`https://pokeapi.co/api/v2/pokemon/${criterioDeBusqueda.value.toLowerCase()}`);
+        console.log("Respuesta de búsqueda:", criterio.data);
         let pokemonData = criterio.data;
         respuesta.value = {
-          url: criterio.config.url,
+         /*  url: criterio.config.url, */
           id: pokemonData.id,
           img: pokemonData.sprites.other["official-artwork"].front_default,
           nombre: pokemonData.name,
@@ -261,7 +262,6 @@ export default {
         console.error(error);
       }
     }
-
     const obtenerUrlPokemon = (url) => {
       console.log("URL del Pokemon:", url);
     };
@@ -290,7 +290,6 @@ export default {
         );
       }
     });
-
     const filtrarPorTipo = (tipo) => {
       filtroTipo.value = tipo;
     };
