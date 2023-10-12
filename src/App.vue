@@ -49,10 +49,12 @@
             <h6>N°{{ respuesta.id }}</h6>
             <h3>{{ respuesta.nombre }}</h3>
             <div class="tipos">
-              <button v-if="respuesta" type="button" class="btn btn-primary" v-for="(tipo, i) in respuesta.tipos" :key="i"
-                :style="{ backgroundColor: getColor(tipo) }" style="border: solid transparent; margin-left: 3%">
+              <button v-if="respuesta && respuesta.tipos && respuesta.tipos.length" type="button" class="btn btn-primary"
+                v-for="(tipo, i) in respuesta.tipos" :key="i"
+                style="border: solid transparent; margin-left: 3%">
                 {{ tipo }}
               </button>
+
             </div>
           </div>
         </div>
@@ -246,7 +248,7 @@ export default {
         console.log("Respuesta de búsqueda:", criterio.data);
         let pokemonData = criterio.data;
         respuesta.value = {
-         /*  url: criterio.config.url, */
+          url: criterio.config.url,
           id: pokemonData.id,
           img: pokemonData.sprites.other["official-artwork"].front_default,
           nombre: pokemonData.name,
